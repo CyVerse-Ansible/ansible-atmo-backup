@@ -4,11 +4,17 @@
   hosts: localhost
   remote_user: root
   tasks:
+    - name: 'create group'
+      group:
+        name: 'iplant-everyone'
+        state: 'present'
+
     - name: 'local user account created'
       user:
         name: 'hotdog'
         state: 'present'
         shell: '/bin/bash'
+        group: 'iplant-everyone'
 
     - name: 'home directory created for user'
       file:
