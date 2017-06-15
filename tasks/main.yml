@@ -1,0 +1,15 @@
+---
+
+- name: Copy cyverse_backup.sh with correct permissions
+  copy:
+    src: "files/cyverse_backup.sh"
+    dest: "/opt/cyverse_backup.sh"
+    owner: "{{ ATMOUSERNAME }}"
+    group: "iplant-everyone"
+    mode: "u+x"
+
+- name: Add to $PATH
+  lineinfile:
+    path: "/home/{{ ATMOUSERNAME }}/.bashrc"
+    line: "export PATH=$PATH:/opt"
+    state: present

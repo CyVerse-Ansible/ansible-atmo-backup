@@ -1,0 +1,17 @@
+---
+
+- name: Pre-install unzip
+  hosts: localhost
+  remote_user: root
+  tasks:
+    - name: 'local user account created'
+      user:
+        name: 'hotdog'
+        state: 'present'
+        shell: '/bin/bash'
+
+    - name: 'home directory created for user'
+      file:
+        path: '/home/hotdog'
+        state: 'directory'
+        mode: 0700
