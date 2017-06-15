@@ -4,12 +4,10 @@
   copy:
     src: "files/cyverse_backup.sh"
     dest: "/opt/cyverse_backup.sh"
-    owner: "{{ ATMOUSERNAME }}"
-    group: "iplant-everyone"
-    mode: "u+x"
+    mode: "0755"
 
-- name: Add to $PATH
-  lineinfile:
-    path: "/home/{{ ATMOUSERNAME }}/.bashrc"
-    line: "export PATH=$PATH:/opt"
-    state: present
+- name: Link to executables path
+  file:
+    src: "/opt/cyverse_backup.sh"
+    dest: "/usr/local/bin/cyverse_backup.sh"
+    state: link
